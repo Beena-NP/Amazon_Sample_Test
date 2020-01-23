@@ -3,6 +3,8 @@ package pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import suite.SuiteManager;
 import util.DriverManager;
 
@@ -11,7 +13,8 @@ public class LoginPage extends SuiteManager {
     private WebElement email;
     @FindBy(xpath = "//input[@id='continue']")
     private WebElement continueBtn;
-    @FindBy(xpath = "//a[@id='createAccountSubmit']")
+    @FindBy(id = "createAccountSubmit")
+            ////a[@id='createAccountSubmit']
     private WebElement createAcnt;
 
     public LoginPage()
@@ -32,6 +35,8 @@ public class LoginPage extends SuiteManager {
     }
     public RegistrationPage createNewAccount()
     {
+        WebDriverWait wait = new WebDriverWait(DriverManager.driver,10);
+        wait.until(ExpectedConditions.visibilityOf(createAcnt));
         createAcnt.click();
         return new RegistrationPage();
     }
