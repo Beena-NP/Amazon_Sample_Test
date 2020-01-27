@@ -3,6 +3,7 @@ package tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.BasePage;
+import pages.SearchPage;
 import suite.SuiteManager;
 import util.ConfigFileReader;
 import util.DriverManager;
@@ -29,11 +30,13 @@ public class BasePageTest extends SuiteManager {
     }
 
     @Test(priority = 2)
-    public void verifySearch()
+    public SearchPage verifySearch()
     {
         String item = config.getProperty("search_item");
         base.searchItems(item);
         System.out.println("Search item entered and clicked on the search button!");
+        return new SearchPage();
     }
+
 
 }
